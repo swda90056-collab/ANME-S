@@ -3,16 +3,13 @@ name: Build ANME S APK
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - ".github/workflows/build-apk.yml"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Download project
         uses: actions/checkout@v4
 
       - name: Set up Java
@@ -29,7 +26,7 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android SDK
+      - name: Install SDK
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
 
       - name: Extract project
